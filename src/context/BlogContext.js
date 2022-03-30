@@ -1,6 +1,7 @@
-import React, { useReducer } from 'react';
+// import React, { useReducer } from 'react';
+import createDataContext from './createDataContext';
 
-const BlogContext = React.createContext();
+//const BlogContext = React.createContext();
 
 const blogReducer = (state, action ) => {
      switch (action.type){
@@ -11,27 +12,37 @@ const blogReducer = (state, action ) => {
           default:
                return state;
      }
-}
-export const BlogProvider = ({ children }) => {
-     const [blogPosts, dispatch] = useReducer(blogReducer, []);
-     
-     //helper function
-     const addBlogPost = () => {
+}  
+// function to modify our reducer
+const addBlogPost = dispatch => {
+     return () => {
           dispatch({ type: 'add_blogpost'})
      }
+}
+
+export const { Context, Provider } = createDataContext(
+     blogReducer, 
+     { addBlogPost }, 
+     []
+     )
+// export const BlogProvider = ({ children }) => {
+//      const [blogPosts, dispatch] = useReducer(blogReducer, []);
+     
+//      //helper function
+    
    
-     return (
-       <BlogContext.Provider value={{ data: blogPosts , addBlogPost}}>
-         {children}
-       </BlogContext.Provider>
-     );
-   };
+//      return (
+//        <BlogContext.Provider value={{ data: blogPosts , addBlogPost}}>
+//          {children}
+//        </BlogContext.Provider>
+//      );
+//    };
    
 
-export default BlogContext;
+// export default BlogContext;
 
 /* 
-3.30.2022
+3302022.1
 we will be adding a reduser to better manage the different helper functions and avoid creating multiple
 helper function for whatever is needed in the action.
 
@@ -43,4 +54,12 @@ The reducer has a state, action and the type of implementation.
 named blogReducer.
 3. update the setBlogPost to use dispatch.
 4. finally, delete the addBlogPost function and remove it from the value prop inside the return blogcontext
+
+at this point, the reducer works just as fine.
+
+we will refactor our current setup with reducer.
+3302022.2
+the chances are that we will have other resources to thie context, so instead of duplicating
+
+
 */
