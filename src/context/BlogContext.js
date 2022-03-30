@@ -22,3 +22,9 @@ export const BlogProvider = ({ children }) => {
    
 
 export default BlogContext;
+
+/* 
+3.30.2022
+we will be adding a reduser to better manage the different helper functions and avoid creating multiple
+helper function for whatever is needed in the action.
+*/
