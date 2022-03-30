@@ -20,17 +20,6 @@ const App = () => {
   </NavigationContainer>
   )
 }
-// function App() {
-//   return (
-//     <NavigationContainer>
-//        <Stack.Navigator initialRouteName="Home">
-//         <Stack.Screen name="Home" component={IndexScreen} />
-//         <Stack.Screen name="Blog" component={BlogScreen} />
-//         <Stack.Screen name="Contact" component={ContactScreen} />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
 
 export default () => { return ( 
   <Provider>
