@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 const IndexScreen = ({ navigation }) => {
 
      return (
@@ -15,6 +16,7 @@ const IndexScreen = ({ navigation }) => {
                          Login with Facebook
                     </Text>
                </Icon.Button>
+               <Icon name="rocket" size={40} color="#444" /> 
                <Button title="Go to Blog" onPress={() => navigation.navigate('Blog')} />
                <Button title="Go to Contact" onPress={() => navigation.navigate('Contact')} />
                <Button title="Go back" onPress={() => navigation.goBack()} />

@@ -2,9 +2,23 @@ import React, { useContext } from 'react';
 import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity } from 'react-native'
 import { Context } from '../context/BlogContext'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 
 const BlogScreen = ({ navigation }) => {
-    console.log(navigation);
+    console.log(navigation.setOptions(
+         { 
+               title: 'My home',
+               headerStyle: {
+                    backgroundColor: '#f4511e',
+               },
+               headerTintColor: '#fff', 
+               headerTitleStyle: {
+                    fontWeight: 'bold',
+               },
+              
+              
+          })
+          );
      const { state, addBlogPost, deleteBlogPost } = useContext(Context)
     
      return (
@@ -37,21 +51,6 @@ const BlogScreen = ({ navigation }) => {
      )
 }
 
-BlogScreen.setOptions = () => {
-   return (
-    navigation.setOptions({
-          headerRight: () => (
-               <Button
-               onPress={() => alert('This is a button!')}
-               title="Info"
-               color="#fff"
-               />
-          ),
-    })
-    )
-   
-}
-
 const styles = StyleSheet.create({
 row: {
      flexDirection: 'row',
@@ -64,7 +63,8 @@ title: {
      fontSize: 18
 },
 icon: {
-     fontSize: 24
+     fontSize: 24,
+     color: 'red'
 }
 })
 
