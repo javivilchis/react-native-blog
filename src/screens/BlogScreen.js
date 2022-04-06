@@ -4,55 +4,61 @@ import { Context } from '../context/BlogContext'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const BlogScreen = ({ navigation }) => {
-    console.log(navigation);
-     const { state, addBlogPost, deleteBlogPost } = useContext(Context)
     
+
+     const { state, deleteBlogPost } = useContext(Context)
+     
+     navigation.setOptions(
+          {
+               headerTitle: "Blog", 
+               headerRight: () => ( 
+               <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+                    <Icon name="plus" />
+               </TouchableOpacity>
+               )
+          }
+     )
+     
      return (
           <View>
-               <Text>Blog</Text>
-
-               <Button title="Add Post" onPress={addBlogPost} />
-               
+               <Text style={styles.maintitle}>Blog</Text>
                <FlatList
                data={state}
                keyExtractor={ blogPost => blogPost.title}
                renderItem={({ item }) => {
                     return (
+                         item ? 
                          <TouchableOpacity onPress={() => navigation.navigate('Show', { id: item.id})}>
                               <View style={styles.row}>
-                                   <Text style={styles.title}>{item.title} - {item.id}</Text> 
+                                   <Text style={styles.title}>{item.id} - {item.title} </Text> 
+                                   <Text style={styles.title}> {item.content}</Text>
                                    <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
                                         <Icon style={styles.icon} name="trash" />
                                    </TouchableOpacity>
+                                   
                               </View>
                          </TouchableOpacity>
+                         : null
                     )
                }}
                />
-
-
-               <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-               <Button title="Go back" onPress={() => navigation.goBack()} />
+               <View style={styles.buttonlist}>
+                    <Button color="white" title="create" onPress={() => navigation.navigate('Create')} />
+                    <Button color="white" title="Go to Home" onPress={() => navigation.navigate('Home')} />
+                    <Button color="white" title="Go back" onPress={() => navigation.goBack()} />
+               </View>
+              
           </View>
      )
 }
 
-BlogScreen.setOptions = () => {
-   return (
-    navigation.setOptions({
-          headerRight: () => (
-               <Button
-               onPress={() => alert('This is a button!')}
-               title="Info"
-               color="#fff"
-               />
-          ),
-    })
-    )
-   
-}
-
 const styles = StyleSheet.create({
+maintitle: {
+     justifyContent: "center",
+     textAlign: "center",
+     fontSize: 20,
+     padding: 10
+},
 row: {
      flexDirection: 'row',
      justifyContent: 'space-between',
@@ -65,6 +71,14 @@ title: {
 },
 icon: {
      fontSize: 24
+},
+buttonlist: {
+     flexDirection: 'row',
+     justifyContent: 'space-between',
+     backgroundColor: '#f46319',
+},
+color: {
+     color: "#fff"
 }
 })
 
