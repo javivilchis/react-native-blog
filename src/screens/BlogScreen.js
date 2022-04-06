@@ -1,19 +1,21 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Linking, Button, FlatList, TouchableOpacity } from 'react-native'
 import { Context } from '../context/BlogContext'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import NativeLinkingManager from 'react-native/Libraries/Linking/NativeLinkingManager';
 
 const BlogScreen = ({ navigation }) => {
     
 
      const { state, deleteBlogPost } = useContext(Context)
-     
+    
+
      navigation.setOptions(
           {
-               headerTitle: "Blog", 
+               headerTitle: "RN Blog", 
                headerRight: () => ( 
                <TouchableOpacity onPress={() => navigation.navigate('Create')}>
-                    <Icon name="plus" />
+                    <Icon name="plus" size={20} />
                </TouchableOpacity>
                )
           }
@@ -43,9 +45,9 @@ const BlogScreen = ({ navigation }) => {
                }}
                />
                <View style={styles.buttonlist}>
-                    <Button color="white" title="create" onPress={() => navigation.navigate('Create')} />
-                    <Button color="white" title="Go to Home" onPress={() => navigation.navigate('Home')} />
-                    <Button color="white" title="Go back" onPress={() => navigation.goBack()} />
+                    <Button color="orange" title="create" onPress={() => navigation.navigate('Create')} />
+                    <Button color="orange" title="Go to Home" onPress={() => navigation.navigate('Home')} />
+                    <Button color="orange" title="Go back" onPress={() => navigation.goBack()} />
                </View>
               
           </View>
