@@ -4,6 +4,8 @@ const blogReducer = (state, action ) => {
      console.log("State: ln 4 ", state)
      console.log("Action: ln 5 ", action)
      switch (action.type){
+          case 'get_blogposts':
+               return []
           case 'add_blogpost':
                return [
                  ...state,
@@ -26,6 +28,9 @@ const blogReducer = (state, action ) => {
      }
 }  
 // function to modify our reducer
+const getBlogPosts = dispatch => {
+     dispatch({type: 'get_blogposts', payload})
+}
 const addBlogPost = dispatch => {
      return (title, content, callback) => {
           dispatch({ type: 'add_blogpost', payload: { title, content }})
