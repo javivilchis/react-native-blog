@@ -5,7 +5,6 @@ const blogReducer = (state, action ) => {
      console.log("Action: ln 5 ", action)
      switch (action.type){
           case 'add_blogpost':
-               console.log("ACTION: ", action.type, " State: ",state)
                return [
                  ...state,
                  {
@@ -16,6 +15,10 @@ const blogReducer = (state, action ) => {
                ]
           case 'delete_blogpost':
                return state.filter( blogPost => blogPost.id !== action.payload)
+          case 'edit_blogpost':
+               return state.map(blogPost => {
+                    return blogPost.id === action.payload.id ? action.payload : blogPost
+               });
           case 'update_blogpost':
                return [...state, {}]
           default:
@@ -26,12 +29,19 @@ const blogReducer = (state, action ) => {
 const addBlogPost = dispatch => {
      return (title, content, callback) => {
           dispatch({ type: 'add_blogpost', payload: { title, content }})
-          callback()
+          if(callback){callback()}
      }
 }
 const editBlogPost = dispatch => {
-     
-}
+     return (id, title, content, callback) => {
+       dispatch({
+         type: 'edit_blogpost',
+         payload: { id, title, content }
+       })
+       if(callback){callback()}
+       
+     }
+   }
 
 const deleteBlogPost = dispatch => {
      return (id) => {

@@ -1,26 +1,20 @@
-import React, { useContext, useState} from 'react'
-import { View, Text, TextInput, StyleSheet, Button } from 'react-native'
-import { Context } from '../context/BlogContext'
+import React, { useContext} from 'react'
+import { StyleSheet } from 'react-native'
+import { Context } from '../context/BlogContext';
+import Form from '../components/Form'
 
-const EditScreen = ({ navigation, route }) => {
+const EditScreen = ({ navigation, route, onSubmit }) => {
      //use route to pass in the params between screens
-     const { state } = useContext(Context)
-
+     const { state, editBlogPost } = useContext(Context)
+     const id = route.params.id
      const blogPost = state.find((blogPost) => blogPost.id === route.params.id)
-
-     const [title, setTitle] = useState(blogPost.title)
-     const [content, setContent] = useState(blogPost.content)
-
-
-     return  (
-          <View>
-               <Text style={styles.label}>Enter Title: {route.params.id} </Text>
-               <Text>Edit Title:</Text>
-               <TextInput value={title} onChangeText={(newTitle)=> setTitle(newTitle)} />
-               <Text>Edit Content:</Text>
-               <TextInput value={content} onChangeText={(newContent)=> setTitle(newContent)} />
-          </View>
-     )
+     console.log("----------- edit screen ---------------------------")
+     console.log("EDIT SCREEN: ",id, blogPost.title, blogPost.content)
+     return <Form 
+          initialValues={{ title: blogPost.title, content: blogPost.content}}
+          onSubmit={(title, content) => {
+          editBlogPost(id, title, content, () => navigation.pop())
+     }} />
 }
 
 const styles = StyleSheet.create({

@@ -6,11 +6,6 @@ export default (reducer, actions, initialState) => {
 
   const Provider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    
-    console.log("Reducer line 9: ",reducer)
-    console.log("Initial State: ",initialState)
-    console.log("createDatacontext:ln 9: ",state)
-    console.log("children: ln 10: ",children)
     // actions === { addBlogPost: (dispatch) => { return () => {} } }
     const boundActions = {}
     for (let key in actions) {
