@@ -21,12 +21,7 @@ const IndexScreen = ({ navigation }) => {
           </View>
      )
 }
-IndexScreen.navigationOptions = () => {
-    return ({
-          headerRight:
-            <Text>OOX</Text>
-        })
-}
+
 const styles = StyleSheet.create({
 
 })
