@@ -2,20 +2,37 @@ import React from 'react'
 import { View, Text, Linking, TouchableOpacity, StyleSheet, Button, SafeAreaView } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 const IndexScreen = ({ navigation }) => {
+     
      const javivilchis = "https://facebook.com/javier.vilchis1"
      const intagram = "https://instagram.com/javivilchis1234" 
+     
      const facebook = ({url}) => {
           Linking.openURL(javivilchis)
      }
      const instagram = ({url}) => {
           Linking.openURL(intagram)
      }
-  
+     navigation.setOptions(
+          {
+               headerTitle: "Home", 
+               headerRight: () => ( 
+               <TouchableOpacity onPress={() => navigation.navigate('Edit', route.params)}>
+                    <Icon name="pencil" size={25} />
+               </TouchableOpacity>
+               )
+          }
+     )
+
      return (
           <SafeAreaView style={styles.container}>
           <View>
-               <Text style={styles.title}>React Native Blog</Text>
-               <Text style={styles.intro}>We are happy you visit our React Native blog system, you can use this blog system however you want. The blog is build following the tutorial by udemy. There are some differences I have applied. In this build, we are not using expo to create the application.Instead, we are using pure react native hooks and plugins. I hope you enjoy it!</Text>
+               <Text style={styles.title}>Home</Text>
+               <View style={styles.intro}>
+                    <Text style={styles.mainpage}>I am happy you visit, this React Native blog system can be use however you want.</Text>
+                    <Text></Text>
+                    <Text style={styles.mainpage}>The blog is build following the tutorial by udemy with some differences I have applied. The main differences include: not using expo to create the application. Instead, I am using pure react native hooks and plugins. </Text>
+                    <Text style={styles.mainpage}>I hope you enjoy it!</Text>
+               </View>
                <Button
                title="Go to home... again"
                onPress={() => navigation.push('Home')}
@@ -52,19 +69,21 @@ const IndexScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
 insta: {marginBottom: 5},
 container: {
-     backgroundColor: "#f4f4f4",
+     backgroundColor: "#DDDBD7",
      alignItems: "center",
      textAlign: "center",
-     color: "#333"
+     color: "#333",
+     height: "100%"
 },
 fb: {
+     flex: 1,
      width: "100%",
      margin: "auto",
      alignContent: "center",
      textAlign: "center",
      alignItems: "center",
      position: "absolute",
-     bottom: -200,
+     bottom: 0,
 },
 title: {
      paddingTop: 20,
@@ -73,12 +92,15 @@ title: {
      fontWeight: "400"
 },
 intro: {
-     fontSize: 18,
-     lineHeight: 28,
+     borderRadius: 8,
      padding: 10,
      backgroundColor: "#fff",
      margin: 20,
     
+},
+mainpage: {
+     fontSize: 18,
+     lineHeight: 28,
 }
 })
 
