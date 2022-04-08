@@ -26,9 +26,9 @@ const ShowScreen = ({ navigation, route }) => {
 
      return  (
           <SafeAreaView style={styles.container}>
-               <View>
+               <View style={styles.blogContainer}>
                     <Text style={styles.title}>{blogPost.title}</Text>
-                    <Text style={styles.content}>Title: {blogPost.title}  </Text>
+                    <Text style={styles.content}>Content: {blogPost.content}  </Text>
                     <Text>ID: {blogPost.id}</Text>
                </View>
           </SafeAreaView>
@@ -50,16 +50,18 @@ const styles = StyleSheet.create({
           fontSize: 30,
           fontWeight: "400"
      },
+     blogContainer: { 
+          flexDirection: 'column',
+          justifyContent: 'flex-start', 
+     },
      content: {
-          border: 1,
-          borderColor: "#333",
-          borderStyle: "solid",
           width: "100%",
           fontSize: 18,
           lineHeight: 28,
           padding: 10,
           backgroundColor: "#fff",
           margin: 20,
+         
          
      }
 })

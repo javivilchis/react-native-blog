@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "268439258556",
+    "project_id": "rnblog-bf02b",
+    "storage_bucket": "rnblog-bf02b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268439258556:android:b6f3ab73b0769dc60f97b9",
+        "android_client_info": {
+          "package_name": "com.rnblog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268439258556-01b9m5k4e08jko9mt6jmam65v5nesica.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoiW9zKpwmO9T70FBHpdWLzI0B7n94Zrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268439258556-01b9m5k4e08jko9mt6jmam65v5nesica.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
