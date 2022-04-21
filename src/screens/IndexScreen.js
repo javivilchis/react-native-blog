@@ -1,8 +1,17 @@
-import React from 'react'
-import { View, Text, Linking, TouchableOpacity, StyleSheet, Button, SafeAreaView } from 'react-native'
+import React, {useLayoutEffect} from 'react'
+import { View, Text, Linking, TouchableOpacity, StyleSheet, Button, SafeAreaView, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useTranslation } from 'react-i18next';
+
+
 const IndexScreen = ({ navigation }) => {
-     
+   
+     const {t, i18n} = useTranslation()
+
+     const changeLanguage = (lng) => {
+          i18n.changeLanguage(lng);
+        }
+
      const javivilchis = "https://facebook.com/javier.vilchis1"
      const intagram = "https://instagram.com/javivilchis1234" 
      
@@ -12,36 +21,51 @@ const IndexScreen = ({ navigation }) => {
      const instagram = ({url}) => {
           Linking.openURL(intagram)
      }
-     navigation.setOptions(
-          {
-               headerTitle: "Home", 
-               headerRight: () => ( 
-               <TouchableOpacity onPress={() => navigation.navigate('Edit', route.params)}>
-                    <Icon name="pencil" size={25} />
-               </TouchableOpacity>
-               )
-          }
-     )
+     useLayoutEffect(() => {
+          
+          navigation.setOptions(
+               {
+                    headerTitle: "LANG", 
+                    headerRight: () => ( 
+                    <TouchableOpacity onPress={() => navigation.navigate('Edit', route.params)}>
+                         <Icon name="pencil" size={25} />
+                    </TouchableOpacity>
+                    )
+               }
+          )
+     })
+    
 
      return (
           <SafeAreaView style={styles.container}>
+               <ScrollView>
           <View>
-               <Text style={styles.title}>Home</Text>
+               <Text style={styles.title}>{t('home')}</Text>
                <View style={styles.intro}>
-                    <Text style={styles.mainpage}>I am happy you visit, this React Native blog system can be use however you want.</Text>
+                    <Text>{t('Hello world')}</Text>
+                    <Text style={styles.mainpage}>{t('welcome paragraph 1')}</Text>
                     <Text></Text>
-                    <Text style={styles.mainpage}>The blog is build following the tutorial by udemy with some differences I have applied. The main differences include: not using expo to create the application. Instead, I am using pure react native hooks and plugins. </Text>
+                    <Text style={styles.mainpage}>{t('welcome paragraph 2')}</Text>
                     <Text style={styles.mainpage}>I hope you enjoy it!</Text>
                </View>
-               <Button
-               title="Go to home... again"
-               onPress={() => navigation.push('Home')}
-               />
               
-               <Button title="Go to Blog" onPress={() => navigation.navigate('Blog')} />
-               <Button title="Go to Contact" onPress={() => navigation.navigate('Contact')} />
-               <Button title="Go back" onPress={() => navigation.goBack()} />
-             
+              
+              <View style={styles.language}>
+                   <Text>{t('languagetext')} {i18n.language}</Text>
+                    <TouchableOpacity>
+                         <Icon.Button name="language" backgroundColor="#27aae1"
+                              onPress={ () => {
+                              i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')
+                              }}>
+                              <Text style={styles.white}>{i18n.language === 'en' ? 'Español' : 'English'}</Text> 
+                         </Icon.Button>
+                    </TouchableOpacity>
+
+                  
+              </View>
+              
+              
+              
                <View style={styles.fb}>
                     <TouchableOpacity onPress={facebook} style={styles.insta}>
                          <Icon.Button name="instagram" onPress={instagram} backgroundColor="orange">
@@ -62,46 +86,66 @@ const IndexScreen = ({ navigation }) => {
                     </TouchableOpacity>
                </View>
           </View>
+          </ScrollView>
           </SafeAreaView>
      )
 }
 
 const styles = StyleSheet.create({
-insta: {marginBottom: 5},
-container: {
-     backgroundColor: "#DDDBD7",
-     alignItems: "center",
-     textAlign: "center",
-     color: "#333",
-     height: "100%"
-},
-fb: {
-     flex: 1,
-     width: "100%",
-     margin: "auto",
-     alignContent: "center",
-     textAlign: "center",
-     alignItems: "center",
-     position: "absolute",
-     bottom: 0,
-},
-title: {
-     paddingTop: 20,
-     textAlign: "center",
-     fontSize: 30,
-     fontWeight: "400"
-},
-intro: {
-     borderRadius: 8,
-     padding: 10,
-     backgroundColor: "#fff",
-     margin: 20,
-    
-},
-mainpage: {
-     fontSize: 18,
-     lineHeight: 28,
-}
+     white: {
+          color: "#ffffff"
+     },
+     language: {
+          flex: 1,
+          margin: "auto",
+          width: "100%",
+          alignItems: "center",
+          marginBottom: 5
+     },
+     insta: {
+          marginBottom: 5
+     },
+     container: {
+          backgroundColor: "#DDDBD7",
+          alignItems: "center",
+          textAlign: "center",
+          color: "#333",
+          height: "100%"
+     },
+     languageBtn: {
+          flex: 1,
+          width: '100%',
+         
+          color: "red",
+          paddingLeft: 30,
+     },
+     fb: {
+          flex: 1,
+          width: "100%",
+          margin: "auto",
+          alignContent: "center",
+          textAlign: "center",
+          alignItems: "center",
+          // position: "absolute",
+          // bottom: 0,
+     },
+     title: {
+          paddingTop: 20,
+          textAlign: "center",
+          fontSize: 30,
+          fontWeight: "400"
+     },
+     intro: {
+          borderRadius: 8,
+          padding: 10,
+          backgroundColor: "#fff",
+          margin: 20,
+     
+     },
+     mainpage: {
+          fontSize: 18,
+          lineHeight: 28,
+     }
 })
 
 export default IndexScreen

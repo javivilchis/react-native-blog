@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { CreateBottomTabNavigator } from '@react-navigation/bottom-tabsnpm install react-native-pager-view'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
+import './src/i18n'
+
 import IndexScreen from './src/screens/IndexScreen'
 import BlogScreen from './src/screens/BlogScreen'
 import ContactScreen from './src/screens/ContactScreen'
@@ -19,6 +21,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
 const MyTabs = () =>  {
+  
   return (
     <Tab.Navigator 
     screenOptions={{

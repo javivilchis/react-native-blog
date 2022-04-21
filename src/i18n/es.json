@@ -1,0 +1,8 @@
+{
+
+     "Hello world": "Bienvenue à React et react-i18next",
+     "home": "Casa",
+     "languagetext": "Cambia tu lenguaje de preferencia, el lenguaje esta puesto en",
+     "welcome paragraph 1": "Me alegra que me visites, este sistema de blog React Native se puede usar como quieras.",
+     "welcome paragraph 2": "El blog está construido siguiendo el tutorial de udemy con algunas diferencias que he aplicado. Las principales diferencias incluyen: no usar expo para crear la aplicación. En cambio, estoy usando ganchos y complementos nativos de reacción pura.",  
+}

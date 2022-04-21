@@ -9,22 +9,10 @@ const BlogScreen = ({ navigation }) => {
 
      const { state, deleteBlogPost } = useContext(Context)
     
-
-     navigation.setOptions(
-          {
-               headerTitle: "RN Blog", 
-               headerRight: () => ( 
-               <TouchableOpacity onPress={() => navigation.navigate('Create')}>
-                    <Icon name="plus" size={20} />
-               </TouchableOpacity>
-               )
-          }
-     )
-     
      return (
           <View>
                <Text style={styles.maintitle}>Blog</Text>
-               <SearchBarItem />
+               <SearchBarItem style={styles.searchbar} />
                <FlatList
                data={state}
                keyExtractor={ blogPost => blogPost.title}
@@ -82,7 +70,11 @@ buttonlist: {
 },
 color: {
      color: "#fff"
+},
+searchbar: {
+     marginBottom: 10
 }
+
 })
 
 export default BlogScreen
