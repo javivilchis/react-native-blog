@@ -3,27 +3,16 @@ import { View, Text, StyleSheet, Linking, Button, FlatList, TouchableOpacity } f
 import { Context } from '../context/BlogContext'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import NativeLinkingManager from 'react-native/Libraries/Linking/NativeLinkingManager';
-
+import SearchBarItem from '../components/SearchBar'
 const BlogScreen = ({ navigation }) => {
     
 
      const { state, deleteBlogPost } = useContext(Context)
     
-
-     navigation.setOptions(
-          {
-               headerTitle: "RN Blog", 
-               headerRight: () => ( 
-               <TouchableOpacity onPress={() => navigation.navigate('Create')}>
-                    <Icon name="plus" size={20} />
-               </TouchableOpacity>
-               )
-          }
-     )
-     
      return (
           <View>
                <Text style={styles.maintitle}>Blog</Text>
+               <SearchBarItem style={styles.searchbar} />
                <FlatList
                data={state}
                keyExtractor={ blogPost => blogPost.title}
@@ -81,7 +70,11 @@ buttonlist: {
 },
 color: {
      color: "#fff"
+},
+searchbar: {
+     marginBottom: 10
 }
+
 })
 
 export default BlogScreen

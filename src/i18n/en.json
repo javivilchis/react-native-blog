@@ -1,0 +1,9 @@
+{
+   
+     "Hello world": "Welcome to React and react-i18next",
+     "home": "Home",
+     "languagetext": "Change the language here: current language is set to",
+     "welcome paragraph 1": "I am happy you visit, this React Native blog system can be use however you want.",
+     "welcome paragraph 2": "The blog is build following the tutorial by udemy with some differences I have applied. The main differences include: not using expo to create the application. Instead, I am using pure react native hooks and plugins. ",
+        
+}
